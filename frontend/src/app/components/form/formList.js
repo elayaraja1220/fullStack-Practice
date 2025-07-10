@@ -1,6 +1,6 @@
 'use client';
 
-export { default as Form } from './form';
+export { default as Form } from './formList';
 export { default as InputText } from './input/input';
 export { default as InputPassword } from './password/password';
 export { default as InputCheckBox } from './checkbox/checkbox';

@@ -13,7 +13,7 @@ import FormLabel from "../label/label";
 
 const InputPassword = (userProps) => {
   const props = { ...commonInputProps, ...userProps };
-  const [showPassword, setShowPassword] = React.useState("")
+  const [toggleMaskState, setToggleMaskState] = React.useState(false);
   const {
     size,
     containerClass,
@@ -31,7 +31,7 @@ const InputPassword = (userProps) => {
     register,
     error,
     children,
-    togglePassword,
+    toggleMask, 
     ...restProps
   } = props;
 
@@ -42,7 +42,7 @@ const InputPassword = (userProps) => {
   const errorMessageLayoutClass = errorMessageLayoutMap[errorMessageLayout] || '';
 
   const containerClassName = [
-    'form-group',
+    
     containerClass,
     defaultSize,
     floatLabelClass,
@@ -53,7 +53,6 @@ const InputPassword = (userProps) => {
 
   return (
     <div className={containerClassName}>
-      {/* Top Label (standard layout only) */}
       {label && !floatLabel && (
         <FormLabel
           htmlFor={restProps.id}
@@ -68,17 +67,16 @@ const InputPassword = (userProps) => {
       )}
 
       <div className={errorMessageLayoutClass}>
-        <input
-          type={restProps.type ||  `${showPassword ? 'text' : 'password' }`}
-          className={['form-control', variantClass, inputClass]
-            .filter(Boolean)
-            .join(' ')}
-          {...restProps}
-          {...(register && restProps.name && register(restProps.name))}
-        />
-        <button type="button" onClick={() => setShowPassword(!showPassword)}>{showPassword? "hide" : "show"}</button>
-        {/* Floating Label (if enabled) */}
-        {label && floatLabel && (
+        
+          <input
+            type={toggleMaskState ? 'text' : 'password'}
+            className={['form-control', variantClass, inputClass]
+              .filter(Boolean)
+              .join(' ')}
+            {...restProps}
+            {...(register && restProps.name && register(restProps.name))}
+          />
+          {label && floatLabel && (
           <FormLabel
             htmlFor={restProps.id}
             labelClass={labelClass}
@@ -91,7 +89,19 @@ const InputPassword = (userProps) => {
           </FormLabel>
         )}
 
-        {/* Error Message */}
+          {toggleMask && (
+            <button
+              type="button"
+              className="btn-toggle-password"
+              onClick={() => setToggleMaskState(prev => !prev)}
+              
+            >
+              {toggleMaskState ? 'Hide' : 'Show'}
+            </button>
+          )}
+        
+
+        
         {error && <div className="error-text">{error}</div>}
       </div>
     </div>

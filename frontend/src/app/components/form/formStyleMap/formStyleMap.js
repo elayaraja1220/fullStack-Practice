@@ -23,30 +23,51 @@ export const commonInputProps = {
 };
 
 export const variantClassMap = {
-  outlined: 'border border-gray-300 bg-white',
-  filled: 'bg-gray-100 border border-transparent',
-  underlined: 'border-b border-gray-400 bg-transparent',
+  outlined: 'form-control-outline',
+  filled: 'form-control-filled',
+  underlined: 'form-control-underline',
 };
 
 export const sizeClassMap = {
-  xs: 'form-group-xs text-xs py-1 px-2',
-  sm: 'form-group-sm text-sm py-1.5 px-3',
-  md: 'form-group-md text-base py-2 px-4',
-  lg: 'form-group-lg text-lg py-2.5 px-4',
-  xl: 'form-group-xl text-xl py-3 px-5',
+  xs: 'form-group form-group-size-xs',
+  sm: 'form-group form-group-size-sm',
+  md: 'form-group form-group-size-md',
+  lg: 'form-group form-group-size-lg',
+  xl: 'form-group form-group-size-xl',
 };
 
+// export const sizeCheckboxClassMap = {
+//   xs: 'form-group form-checkbox-size-xs',
+//   sm: 'form-group form-checkbox-size-sm',
+//   md: 'form-group form-checkbox-size-md',
+//   lg: 'form-group form-checkbox-size-lg',
+//   xl: 'form-group form-checkbox-size-xl',
+// };
+
+// export const sizeRadioButtonClassMap = {
+//   xs: 'form-group form-radio-size-xs',
+//   sm: 'form-group form-radio-size-sm',
+//   md: 'form-group form-radio-size-md',
+//   lg: 'form-group form-radio-size-lg',
+//   xl: 'form-group form-radio-size-xl',
+// };
+
 export const layoutClassMap = {
-    horizontal: 'flex flex-row',
-    vertical: 'flex flex-col'
+    horizontal: 'form-layout-horizontal',
+    vertical: 'form-layout-vertical'
 }
 
 export const errorMessageLayoutMap = {
-    horizontal: 'flex flex-row',
-    vertical: 'flex flex-col'
+    horizontal: 'form-message-horizontal',
+    vertical: 'form-message-vertical'
 }
 
 export const floatLabelClassMap = {
   true: "float-label",
   false: ""
+}
+
+const labelPosition = {
+  left: "",
+  right: ""
 }

@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "./variable.css";
+@import "./forms.css";
+*{
+    @apply
+    box-border
+}
+body {
+    @apply
+    font-normal
+    m-0
+    p-0
+    text-[var(--default-text-color)]
+}

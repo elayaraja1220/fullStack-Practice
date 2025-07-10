@@ -1,62 +1,97 @@
 'use client';
 
-
+import {
+  commonInputProps,
+  errorMessageLayoutMap,
+  floatLabelClassMap,
+  layoutClassMap,
+  sizeClassMap,
+  variantClassMap
+} from "../formStyleMap/formStyleMap";
 import FormLabel from "../label/label";
 
-const InputEmail = ({
-  size = 'md',
-  containerClass,
-  inputClass,
-  label,
-  labelClass,
-  labelStyle,
-  labelTitle,
-  labelTabIndex,
-  labelId,
-  register,
-  error,
-  children,
-  ...props
-}) => {
-  const sizeClassMap = {
-    xs: 'form-group-xs',
-    sm: 'form-group-small',
-    md: 'form-group-md',
-    lg: 'form-group-lg',
-    xl: 'form-group-xl',
-  };
+const InputEmail = (userProps) => {
+  const props = { ...commonInputProps, ...userProps };
 
-  const defaultSize = sizeClassMap[size] || sizeClassMap.md;
+  const {
+    size,
+    containerClass,
+    variant,
+    formGroupLayout,
+    errorMessageLayout,
+    floatLabel,
+    inputClass,
+    label,
+    labelClass,
+    labelStyle,
+    labelTitle,
+    labelTabIndex,
+    labelId,
+    register,
+    error,
+    children,
+    ...restProps
+  } = props;
 
-  const containerClassName = ['form-group', containerClass, defaultSize]
+  const variantClass = variantClassMap[variant] || '';
+  const defaultSize = sizeClassMap[size] || '';
+  const formLayout = layoutClassMap[formGroupLayout] || '';
+  const floatLabelClass = floatLabelClassMap[floatLabel] || '';
+  const errorMessageLayoutClass = errorMessageLayoutMap[errorMessageLayout] || '';
+
+  const containerClassName = [
+    
+    containerClass,
+    defaultSize,
+    floatLabelClass,
+    formLayout
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
     <div className={containerClassName}>
-      {label && (
+      {/* Top Label (standard layout only) */}
+      {label && !floatLabel && (
         <FormLabel
-          htmlFor={props.id}
+          htmlFor={restProps.id}
           labelClass={labelClass}
           style={labelStyle}
           title={labelTitle}
           tabIndex={labelTabIndex}
           id={labelId}
-          type="email"
-          
         >
           {label}
         </FormLabel>
       )}
 
-      <input
-        type={props.type || 'text'}
-        className={inputClass || ''}
-        {...props}
-        {...(register && props.name && register(props.name))}
-      />
+      <div className={errorMessageLayoutClass}>
+        <input
+          type={restProps.type || 'email'}
+          className={['form-control', variantClass, inputClass]
+            .filter(Boolean)
+            .join(' ')}
+          {...restProps}
+          {...(register && restProps.name && register(restProps.name))}
+        />
 
-      {error && <div className="error-text">{error}</div>}
+        {/* Floating Label (if enabled) */}
+        {label && floatLabel && (
+          <FormLabel
+            htmlFor={restProps.id}
+            labelClass={labelClass}
+            style={labelStyle}
+            title={labelTitle}
+            tabIndex={labelTabIndex}
+            id={labelId}
+          >
+            {label}
+          </FormLabel>
+        )}
+
+        {/* Error Message */}
+        {error && <div className="error-text">{error}</div>}
+      </div>
     </div>
   );
 };

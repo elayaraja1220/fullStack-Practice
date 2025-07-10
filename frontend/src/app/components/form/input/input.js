@@ -10,7 +10,7 @@ import {
 } from "../formStyleMap/formStyleMap";
 import FormLabel from "../label/label";
 
-const InputPassword = (userProps) => {
+const InputText = (userProps) => {
   const props = { ...commonInputProps, ...userProps };
 
   const {
@@ -30,6 +30,7 @@ const InputPassword = (userProps) => {
     register,
     error,
     children,
+    placeholder, 
     ...restProps
   } = props;
 
@@ -40,7 +41,6 @@ const InputPassword = (userProps) => {
   const errorMessageLayoutClass = errorMessageLayoutMap[errorMessageLayout] || '';
 
   const containerClassName = [
-    'form-group',
     containerClass,
     defaultSize,
     floatLabelClass,
@@ -48,6 +48,13 @@ const InputPassword = (userProps) => {
   ]
     .filter(Boolean)
     .join(' ');
+
+  // Only add placeholder if variant is not 'underlined'
+  const inputProps = {
+    ...restProps,
+    ...(variant !== 'underlined' || floatLabel !== true ? { placeholder } : {}),
+    ...(register && restProps.name ? register(restProps.name) : {}),
+  };
 
   return (
     <div className={containerClassName}>
@@ -65,14 +72,13 @@ const InputPassword = (userProps) => {
         </FormLabel>
       )}
 
-      <div className={errorMessageLayoutClass}>
+      <div className={`${errorMessageLayoutClass}`}>
         <input
           type={restProps.type || 'text'}
           className={['form-control', variantClass, inputClass]
             .filter(Boolean)
             .join(' ')}
-          {...restProps}
-          {...(register && restProps.name && register(restProps.name))}
+          {...inputProps}
         />
 
         {/* Floating Label (if enabled) */}
@@ -90,10 +96,10 @@ const InputPassword = (userProps) => {
         )}
 
         {/* Error Message */}
-        {error && <div className="error-text">{error}</div>}
+        {error && <div className="form-message error-text">{error}</div>}
       </div>
     </div>
   );
 };
 
-export default InputPassword;
+export default InputText;

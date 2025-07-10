@@ -1,0 +1,112 @@
+@layer components {
+  .form-group {
+    @apply flex
+        flex-wrap
+        w-full
+        relative;
+  }
+  /****FormGroup Layout****/
+  .form-group.form-layout-horizontal {
+    @apply flex-row;
+  }
+  .form-group.form-layout-vertical {
+    @apply flex-col;
+  }
+
+  /****Formerror Layout****/
+  .form-message-horizontal {
+    @apply flex
+        flex-wrap
+          flex-row;
+  }
+  .form-message-vertical {
+    @apply flex
+        flex-wrap
+        flex-col;
+  }
+  .form-control {
+    @apply rounded-md;
+    &.form-control-outline {
+      @apply border
+        border-solid
+        border-[var(--input-border-color)]
+        rounded-md;
+    }
+    &.form-control-filled {
+      @apply border-none
+      bg-[var(--input-bg-color)]
+        
+    }
+    &.form-control-underline {
+      @apply border-b
+      border-solid
+      border-[var(--input-border-color)]
+      rounded-none
+      !ps-0
+        
+    }
+  }
+  .form-control:focus {
+    @apply outline-none;
+  }
+  /****Formerror Size****/
+  .form-group-size-xs {
+    .form-control {
+      @apply text-xs
+      px-2
+      py-1;
+    }
+    .form-label {
+      @apply text-xs;
+    }
+  }
+
+  .form-group-size-sm {
+    .form-control {
+      @apply text-sm
+      px-3
+      py-1;
+    }
+    .form-label {
+      @apply text-sm;
+    }
+  }
+
+  .form-group-size-md {
+    .form-control {
+      @apply text-[1rem]
+      px-3
+      py-1;
+    }
+    .form-label {
+      @apply text-[1rem];
+    }
+  }
+
+  .form-group-size-lg {
+    .form-control {
+      @apply text-[1.2rem]
+      px-3
+      py-2;
+    }
+    .form-label {
+      @apply text-[1rem];
+    }
+  }
+
+  .form-group-size-xl {
+    .form-control {
+      @apply text-[1.5rem]
+      px-3
+      py-2;
+    }
+    .form-label {
+      @apply text-[1.5rem];
+    }
+  }
+  .btn-toggle-password {
+    @apply absolute
+        right-0
+        top-5;
+  }
+}
