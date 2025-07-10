@@ -63,7 +63,7 @@ export const errorMessageLayoutMap = {
 }
 
 export const floatLabelClassMap = {
-  true: "float-label",
+  true: "form-group-floating",
   false: ""
 }
 

@@ -3,7 +3,8 @@
     @apply flex
         flex-wrap
         w-full
-        relative;
+        relative
+        mb-4
   }
   /****FormGroup Layout****/
   .form-group.form-layout-horizontal {
@@ -103,6 +104,28 @@
     .form-label {
       @apply text-[1.5rem];
     }
+  }
+  .form-group-floating {
+    @apply relative;
+    .form-label {
+      @apply absolute
+      left-2
+      top-1
+    }
+    .form-control::placeholder {
+        @apply
+        opacity-0
+      
+    }
+    .form-control:focus ~ .form-label,
+     .form-control:not(:placeholder-shown) ~ .form-label
+
+    {
+      @apply
+      -top-6
+    }
+    
+    
   }
   .btn-toggle-password {
     @apply absolute

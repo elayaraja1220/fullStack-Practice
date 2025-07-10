@@ -1,5 +1,6 @@
 'use client';
 
+import React from "react";
 import {
   commonInputProps,
   errorMessageLayoutMap,
@@ -30,7 +31,6 @@ const InputText = (userProps) => {
     register,
     error,
     children,
-    placeholder, 
     ...restProps
   } = props;
 
@@ -49,16 +49,16 @@ const InputText = (userProps) => {
     .filter(Boolean)
     .join(' ');
 
-  // Only add placeholder if variant is not 'underlined'
   const inputProps = {
     ...restProps,
-    ...(variant !== 'underlined' || floatLabel !== true ? { placeholder } : {}),
     ...(register && restProps.name ? register(restProps.name) : {}),
   };
 
+  const [value, setValue] = React.useState('');
+
   return (
-    <div className={containerClassName}>
-      {/* Top Label (standard layout only) */}
+    <div className={`${containerClassName} form-group-input`}>
+      {/* Standard label (non-floating layout) */}
       {label && !floatLabel && (
         <FormLabel
           htmlFor={restProps.id}
@@ -72,10 +72,16 @@ const InputText = (userProps) => {
         </FormLabel>
       )}
 
-      <div className={`${errorMessageLayoutClass}`}>
+      <div className={errorMessageLayoutClass}>
         <input
           type={restProps.type || 'text'}
-          className={['form-control', variantClass, inputClass]
+          
+          className={[
+            'form-control',
+            variantClass,
+            inputClass,
+            value ? 'has-value' : ''
+          ]
             .filter(Boolean)
             .join(' ')}
           {...inputProps}
@@ -85,7 +91,7 @@ const InputText = (userProps) => {
         {label && floatLabel && (
           <FormLabel
             htmlFor={restProps.id}
-            labelClass={labelClass}
+            labelClass={`${labelClass}`}
             style={labelStyle}
             title={labelTitle}
             tabIndex={labelTabIndex}
