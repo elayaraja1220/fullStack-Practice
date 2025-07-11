@@ -28,6 +28,12 @@ export const variantClassMap = {
   underlined: 'form-control-underline',
 };
 
+export const CheckBoxvariantClassMap = {
+  outlined: 'form-control-outline',
+  filled: 'form-control-filled',
+  
+};
+
 export const sizeClassMap = {
   xs: 'form-group form-group-size-xs',
   sm: 'form-group form-group-size-sm',
@@ -36,21 +42,7 @@ export const sizeClassMap = {
   xl: 'form-group form-group-size-xl',
 };
 
-// export const sizeCheckboxClassMap = {
-//   xs: 'form-group form-checkbox-size-xs',
-//   sm: 'form-group form-checkbox-size-sm',
-//   md: 'form-group form-checkbox-size-md',
-//   lg: 'form-group form-checkbox-size-lg',
-//   xl: 'form-group form-checkbox-size-xl',
-// };
 
-// export const sizeRadioButtonClassMap = {
-//   xs: 'form-group form-radio-size-xs',
-//   sm: 'form-group form-radio-size-sm',
-//   md: 'form-group form-radio-size-md',
-//   lg: 'form-group form-radio-size-lg',
-//   xl: 'form-group form-radio-size-xl',
-// };
 
 export const layoutClassMap = {
     horizontal: 'form-layout-horizontal',

@@ -8,7 +8,7 @@ import {
   layoutClassMap,
   sizeClassMap,
   variantClassMap
-} from "../formStyleMap/formStyleMap";
+} from "../style/formStyleMap/formStyleMap";
 import FormLabel from "../label/label";
 
 const InputText = (userProps) => {
@@ -22,6 +22,7 @@ const InputText = (userProps) => {
     errorMessageLayout,
     floatLabel,
     inputClass,
+    inputId,
     label,
     labelClass,
     labelStyle,
@@ -61,7 +62,7 @@ const InputText = (userProps) => {
       {/* Standard label (non-floating layout) */}
       {label && !floatLabel && (
         <FormLabel
-          htmlFor={restProps.id}
+          htmlFor={inputId}
           labelClass={labelClass}
           style={labelStyle}
           title={labelTitle}
@@ -75,12 +76,11 @@ const InputText = (userProps) => {
       <div className={errorMessageLayoutClass}>
         <input
           type={restProps.type || 'text'}
-          
+          id={inputId}
           className={[
             'form-control',
             variantClass,
             inputClass,
-            value ? 'has-value' : ''
           ]
             .filter(Boolean)
             .join(' ')}
@@ -90,7 +90,7 @@ const InputText = (userProps) => {
         {/* Floating Label (if enabled) */}
         {label && floatLabel && (
           <FormLabel
-            htmlFor={restProps.id}
+            htmlFor={inputId}
             labelClass={`${labelClass}`}
             style={labelStyle}
             title={labelTitle}

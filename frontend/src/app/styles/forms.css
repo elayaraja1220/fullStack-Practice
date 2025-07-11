@@ -4,7 +4,6 @@
         flex-wrap
         w-full
         relative
-        mb-4
   }
   /****FormGroup Layout****/
   .form-group.form-layout-horizontal {
@@ -18,15 +17,17 @@
   .form-message-horizontal {
     @apply flex
         flex-wrap
+        justify-start
           flex-row;
   }
   .form-message-vertical {
     @apply flex
         flex-wrap
+        items-start
         flex-col;
   }
   .form-control {
-    @apply rounded-md;
+    @apply w-full rounded-md;
     &.form-control-outline {
       @apply border
         border-solid

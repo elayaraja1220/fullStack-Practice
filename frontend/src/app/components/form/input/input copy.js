@@ -1,6 +1,5 @@
 'use client';
 
-
 import React from "react";
 import {
   commonInputProps,
@@ -12,9 +11,9 @@ import {
 } from "../style/formStyleMap/formStyleMap";
 import FormLabel from "../label/label";
 
-const InputPassword = (userProps) => {
+const InputText = (userProps) => {
   const props = { ...commonInputProps, ...userProps };
-  const [toggleMaskState, setToggleMaskState] = React.useState(false)
+
   const {
     size,
     containerClass,
@@ -23,7 +22,6 @@ const InputPassword = (userProps) => {
     errorMessageLayout,
     floatLabel,
     inputClass,
-    inputId,
     label,
     labelClass,
     labelStyle,
@@ -33,7 +31,6 @@ const InputPassword = (userProps) => {
     register,
     error,
     children,
-    toggleMask,
     ...restProps
   } = props;
 
@@ -52,19 +49,19 @@ const InputPassword = (userProps) => {
     .filter(Boolean)
     .join(' ');
 
-  // Only add placeholder if variant is not 'underlined'
   const inputProps = {
     ...restProps,
     ...(register && restProps.name ? register(restProps.name) : {}),
   };
-const [value, setValue] = React.useState('');
+
+  const [value, setValue] = React.useState('');
 
   return (
-    <div className={`${containerClassName} form-group-password`}>
-      {/* Top Label (standard layout only) */}
+    <div className={`${containerClassName} form-group-input`}>
+      {/* Standard label (non-floating layout) */}
       {label && !floatLabel && (
         <FormLabel
-           htmlFor={inputId}
+          htmlFor={restProps.id}
           labelClass={labelClass}
           style={labelStyle}
           title={labelTitle}
@@ -75,44 +72,35 @@ const [value, setValue] = React.useState('');
         </FormLabel>
       )}
 
-      <div className={`${errorMessageLayoutClass} ${floatLabel ? 'floating-label' : ''}`}>
+      <div className={errorMessageLayoutClass}>
         <input
-          type={toggleMaskState ? 'text' : 'password'}
-          id={inputId}
-          className={['form-control', variantClass, inputClass, value ? 'has-value' : '']
+          type={restProps.type || 'text'}
+          
+          className={[
+            'form-control',
+            variantClass,
+            inputClass,
+            value ? 'has-value' : ''
+          ]
             .filter(Boolean)
             .join(' ')}
           {...inputProps}
         />
 
-{/* Floating Label (if enabled) */}
+        {/* Floating Label (if enabled) */}
         {label && floatLabel && (
           <FormLabel
-             htmlFor={inputId}
-            labelClass={labelClass}
+            htmlFor={restProps.id}
+            labelClass={`${labelClass}`}
             style={labelStyle}
             title={labelTitle}
             tabIndex={labelTabIndex}
             id={labelId}
-
           >
             {label}
           </FormLabel>
         )}
 
-
-        {toggleMask && (
-          <button
-            type="button"
-            className="btn-toggle-password"
-            onClick={() => setToggleMaskState(prev => !prev)}
-
-          >
-            {toggleMaskState ? 'Hide' : 'Show'}
-          </button>
-        )}
-
-        
         {/* Error Message */}
         {error && <div className="form-message error-text">{error}</div>}
       </div>
@@ -120,4 +108,4 @@ const [value, setValue] = React.useState('');
   );
 };
 
-export default InputPassword;
+export default InputText;

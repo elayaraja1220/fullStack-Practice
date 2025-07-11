@@ -11,18 +11,17 @@ export default {
   },
   argTypes: {
     label: { control: 'text' },
-    inputId: { control: 'text' }, // ✅ Added control for inputId
     placeholder: { control: 'text' },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg','xl'],
     },
     floatLabel: {
       control: 'boolean',
     },
     variant: {
       control: 'select',
-      options: ['outlined', 'underlined', 'filled'],
+      options: ['outlined', 'underlined', 'filled'], // depends on your variantClassMap
     },
     error: { control: 'text' },
     inputClass: { control: 'text' },
@@ -32,7 +31,6 @@ export default {
   },
   args: {
     onClick: fn(),
-    inputId: 'email-default', // ✅ Default inputId
     label: 'Email',
     name: 'email',
     placeholder: 'Enter your email',
@@ -43,7 +41,6 @@ export default {
 
 export const Default = {
   args: {
-    inputId: 'email-default',
     label: 'Email Address',
     placeholder: 'Enter your email',
   },
@@ -51,16 +48,14 @@ export const Default = {
 
 export const WithFloatingLabel = {
   args: {
-    inputId: 'email-floating',
     floatLabel: true,
     label: 'Email Address',
-    placeholder: '',
+    placeholder: '', // hide placeholder when using floating label
   },
 };
 
 export const WithError = {
   args: {
-    inputId: 'email-error',
     label: 'Email Address',
     error: 'Invalid email address',
     type: 'email',
@@ -69,17 +64,17 @@ export const WithError = {
 
 export const AllSizes = () => (
   <div className="space-y-4">
-    <InputEmail inputId="email-xs" size="xs" label="Email XS" name="email-xs" placeholder="xs" />
-    <InputEmail inputId="email-sm" size="sm" label="Email SM" name="email-sm" placeholder="sm" />
-    <InputEmail inputId="email-md" size="md" label="Email MD" name="email-md" placeholder="md" />
-    <InputEmail inputId="email-lg" size="lg" label="Email LG" name="email-lg" placeholder="lg" />
+    <InputEmail size="xs" label="Email XS" name="email-xs" placeholder="xs" />
+    <InputEmail size="sm" label="Email SM" name="email-sm" placeholder="sm" />
+    <InputEmail size="md" label="Email MD" name="email-md" placeholder="md" />
+    <InputEmail size="lg" label="Email LG" name="email-lg" placeholder="lg" />
   </div>
 );
 
 export const AllVariants = () => (
   <div className="space-y-4">
-    <InputEmail inputId="email-outlined" variant="outlined" label="Outlined" name="email-outlined" />
-    <InputEmail inputId="email-underlined" variant="underlined" label="Underlined" name="email-underlined" />
-    <InputEmail inputId="email-filled" variant="filled" label="Filled" name="email-filled" />
+    <InputEmail variant="outlined" label="Outlined" name="email-outlined" />
+    <InputEmail variant="underlined" label="Underlined" name="email-underlined" />
+    <InputEmail variant="filled" label="Filled" name="email-filled" />
   </div>
 );

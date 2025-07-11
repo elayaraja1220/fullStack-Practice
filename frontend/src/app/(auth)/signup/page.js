@@ -51,8 +51,9 @@ export default function SignupForm() {
   return (
     <FormProvider {...methods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <InputCheckBox  size="xs" id="check"/>
         <InputText
-          size="md"
+          size="xs"
           label="First Name"
           name="firstName"
           placeholder="Enter your first name"
@@ -61,11 +62,10 @@ export default function SignupForm() {
           id="firstname"
           formGroupLayout="vertical"
           errorMessageLayout="vertical"
-          variant="outlined"
-          floatLabel
+          variant="filled"
         />
 
-        <InputPassword
+        {/* <InputPassword
           size="md"
           label="Password"
           name="password"
@@ -92,7 +92,7 @@ export default function SignupForm() {
           errorMessageLayout="vertical"
           variant="outlined"
           floatLabel
-        />
+        /> */}
 
         <button type="submit">Submit</button>
       </Form>

@@ -1,6 +1,8 @@
 @import "tailwindcss";
+@import "./stories.css";
 @import "./variable.css";
 @import "./forms.css";
+@import "./checkbox.css";
 *{
     @apply
     box-border
